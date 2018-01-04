@@ -1,15 +1,38 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
+  import Vue from 'vue'
+  import Router from 'vue-router'
+  import Login from '@/components/Login'
+  import Register from '@/components/Register'
+ 
+  Vue.use(Router)
 
-Vue.use(Router)
-
-export default new Router({
-  routes: [
-    {
-      path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld
+  const router = new Router({
+    mode: 'history',
+    routes: [
+      {
+        
+        path: '/login',
+        name: 'login',
+        component: Login
+      },
+      {
+        path: '/register',
+        name: 'register',
+        component: Register
+      }
+    ]
+  })
+  
+  router.beforeEach((to, from, next) => {
+    if (to.meta.requiresAuth && !from.meta.requiresAuth) {
+      var isAuth = localStorage.getItem('isLoggedIn')
+      // just figured out it returns string and not bool after hours of confusion lol
+      if (isAuth == 'true') {
+        next()
+      } else if(isAuth == 'false') {
+        next({name: 'login'})
+      }
     }
-  ]
-})
+    next()
+  })
+  
+  export default router

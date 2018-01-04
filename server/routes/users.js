@@ -42,10 +42,14 @@ router.post('/register', function(req, res){
               return res.send({error: 'please try again.'})
               return;
             } else {
-              return res.send({success: 'You are registred'})
+              return res.send({success: 'you are registred!!'})
               }
           });
         });
       });
     }
+  });
+  //render login form
+  router.post('/login', passport.authenticate('local'), function(req, res){
+    res.status(200).json({user: req.user._id});
   });
