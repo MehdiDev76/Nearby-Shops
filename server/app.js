@@ -32,4 +32,4 @@ app.use(cors())
 app.listen(3000, function(){
     console.log('Server has started!!!'+ 3000);
   })
-  //to know the port
+  //use process.env.PORT
