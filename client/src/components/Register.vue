@@ -6,7 +6,6 @@
     <v-text-field label="Password"
               v-model="password"
               :rules="passRules"
-              :append-icon="e1 ? 'visibility' : 'visibility_off'"
               :append-icon-cb="() => (e1 = !e1)"
               :type="e1 ? 'password' : 'text'"
               counter
@@ -14,7 +13,6 @@
             ></v-text-field>
                     <p class="err">{{error}}</p>
     <v-btn @click="register" :disabled="!valid">Submit</v-btn>
-    <v-btn @click="clear">clear</v-btn>
   </v-form>
 </v-flex>
 </template>
@@ -29,12 +27,10 @@ import AuthentificationService from '@/services/AuthentificationService'
       email: '',
       emailRules: [
         (v) => !!v || 'E-mail is required',
-        (v) => /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'E-mail must be valid'
       ],
       password: '',
       passRules: [
         (v) => !!v || 'Password is required',
-        (v) => v && v.length >= 2 || 'Password must more than 2 characters'
       ],
       e1: true
     }),

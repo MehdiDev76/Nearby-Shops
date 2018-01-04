@@ -29,13 +29,13 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    setUser( {commit}, user) {
+    setUser({commit}, user) {
       commit('setUser', user)
     },
-    setLoc( {commit}, userLoc) {
+    setLoc({commit}, userLoc) {
       commit('setLoc', userLoc)
     },
-    logout( {commit}) {
+    logout({commit}) {
       commit('logout')
     }
   }
